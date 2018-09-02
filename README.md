@@ -8,3 +8,5 @@ Who ever wants to is welcome to improve it.
 To build and run it use the command:
 
 `cargo run --release`
+
+Details see Wiki.
