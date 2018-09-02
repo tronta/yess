@@ -1,0 +1,7 @@
+[package]
+name = "yess"
+version = "1.0.0"
+authors = ["Peter Sonntag <peter@sonniger-tag.eu>"]
+
+[dependencies]
+rayon = "*"
