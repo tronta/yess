@@ -1,7 +1,7 @@
 use playfield::Piece::*;
+use std::collections::HashSet;
 use std::fmt;
 use std::fmt::Formatter;
-use std::collections::HashSet;
 
 #[derive(Copy, Clone, PartialEq)]
 pub enum Piece {
@@ -70,25 +70,37 @@ impl Playfield {
         }
     }
 
-/*    pub fn clear(&mut self) {
-        self.field = [NoStone; 55];
-        self.set_pieces.clear();
-//        self.counter = 0;
-    }*/
+    /*    pub fn clear(&mut self) {
+            self.field = [NoStone; 55];
+            self.set_pieces.clear();
+    //        self.counter = 0;
+        }*/
 
-    pub fn remove_piece( &mut self, e_nb: usize ) {
-            let stones = [Stone('A'), Stone('B'), Stone('C'), Stone('D'), Stone('E'),Stone('F'),
-                  Stone('G'),Stone('H'),Stone('I'),Stone('J'), Stone('K'),Stone('L'),Stone('T')];
+    pub fn remove_piece(&mut self, e_nb: usize) {
+        let stones = [
+            Stone('A'),
+            Stone('B'),
+            Stone('C'),
+            Stone('D'),
+            Stone('E'),
+            Stone('F'),
+            Stone('G'),
+            Stone('H'),
+            Stone('I'),
+            Stone('J'),
+            Stone('K'),
+            Stone('L'),
+            Stone('T'),
+        ];
 
-                for i in 0..55 {
-                if self.field[i] == stones[e_nb] {
-                    self.field[i] = NoStone;
+        for i in 0..55 {
+            if self.field[i] == stones[e_nb] {
+                self.field[i] = NoStone;
             }
         }
     }
 
     pub fn set_piece(&mut self, co: (usize, usize), e_nb: usize, rot: u8) -> bool {
-
         // Check if piece has already been used, if yes remove this piece
         if self.set_pieces.contains(&e_nb) {
             self.remove_piece(e_nb);
@@ -106,63 +118,63 @@ impl Playfield {
         let pieces = [
             [
                 [Stone('A'), Stone('A'), Stone('A'), NoStone], // 0
-                [Stone('A'), NoStone,    NoStone,    NoStone],
-                [NoStone,    NoStone,    NoStone,    NoStone],
+                [Stone('A'), NoStone, NoStone, NoStone],
+                [NoStone, NoStone, NoStone, NoStone],
             ],
             [
                 [Stone('B'), Stone('B'), Stone('B'), NoStone], // 1
-                [Stone('B'), Stone('B'), NoStone,    NoStone],
-                [NoStone,    NoStone,    NoStone,    NoStone],
+                [Stone('B'), Stone('B'), NoStone, NoStone],
+                [NoStone, NoStone, NoStone, NoStone],
             ],
             [
                 [Stone('C'), Stone('C'), Stone('C'), Stone('C')], // 2
-                [Stone('C'), NoStone,    NoStone,    NoStone],
-                [NoStone,    NoStone,    NoStone,    NoStone],
+                [Stone('C'), NoStone, NoStone, NoStone],
+                [NoStone, NoStone, NoStone, NoStone],
             ],
             [
                 [Stone('D'), Stone('D'), Stone('D'), Stone('D')], // 3
-                [NoStone,    Stone('D'), NoStone,    NoStone],
-                [NoStone,    NoStone,    NoStone,    NoStone],
+                [NoStone, Stone('D'), NoStone, NoStone],
+                [NoStone, NoStone, NoStone, NoStone],
             ],
             [
                 [Stone('E'), Stone('E'), Stone('E'), NoStone], // 4
-                [NoStone,    NoStone,    Stone('E'), Stone('E')],
-                [NoStone,    NoStone,    NoStone,    NoStone],
+                [NoStone, NoStone, Stone('E'), Stone('E')],
+                [NoStone, NoStone, NoStone, NoStone],
             ],
             [
                 [Stone('F'), Stone('F'), NoStone, NoStone], // 5
-                [Stone('F'), NoStone,    NoStone, NoStone],
-                [NoStone,    NoStone,    NoStone, NoStone],
+                [Stone('F'), NoStone, NoStone, NoStone],
+                [NoStone, NoStone, NoStone, NoStone],
             ],
             [
                 [Stone('G'), Stone('G'), Stone('G'), NoStone], // 6
-                [Stone('G'), NoStone,    NoStone, NoStone],
-                [Stone('G'), NoStone,    NoStone, NoStone],
+                [Stone('G'), NoStone, NoStone, NoStone],
+                [Stone('G'), NoStone, NoStone, NoStone],
             ],
             [
-                [Stone('H'), Stone('H'), NoStone,    NoStone], // 7
-                [NoStone,    Stone('H'), Stone('H'), NoStone],
-                [NoStone,    NoStone,    Stone('H'), NoStone],
+                [Stone('H'), Stone('H'), NoStone, NoStone], // 7
+                [NoStone, Stone('H'), Stone('H'), NoStone],
+                [NoStone, NoStone, Stone('H'), NoStone],
             ],
             [
                 [Stone('I'), Stone('I'), Stone('I'), NoStone], // 8
-                [Stone('I'), NoStone,    Stone('I'), NoStone],
-                [NoStone,    NoStone,    NoStone,    NoStone],
+                [Stone('I'), NoStone, Stone('I'), NoStone],
+                [NoStone, NoStone, NoStone, NoStone],
             ],
             [
                 [Stone('J'), Stone('J'), Stone('J'), Stone('J')], // 9
-                [NoStone,    NoStone,    NoStone,    NoStone],
-                [NoStone,    NoStone,    NoStone,    NoStone],
+                [NoStone, NoStone, NoStone, NoStone],
+                [NoStone, NoStone, NoStone, NoStone],
             ],
             [
                 [Stone('K'), Stone('K'), NoStone, NoStone], // 10
                 [Stone('K'), Stone('K'), NoStone, NoStone],
-                [NoStone,    NoStone,    NoStone, NoStone],
+                [NoStone, NoStone, NoStone, NoStone],
             ],
             [
-                [NoStone,    Stone('L'), NoStone,    NoStone], // 11
+                [NoStone, Stone('L'), NoStone, NoStone], // 11
                 [Stone('L'), Stone('L'), Stone('L'), NoStone],
-                [NoStone,    Stone('L'), NoStone,    NoStone],
+                [NoStone, Stone('L'), NoStone, NoStone],
             ],
         ];
 
@@ -198,7 +210,8 @@ impl Playfield {
                 }
             }
 
-            1 => { // Rotation 90° clockwise
+            1 => {
+                // Rotation 90° clockwise
                 for xs in 0..4 {
                     for ys in 0..3 - empty_rows_y[e_nb] {
                         piece[xs][2 - ys - empty_rows_y[e_nb]] = piece_or[ys][xs];
@@ -206,7 +219,8 @@ impl Playfield {
                 }
             }
 
-            2 => { // Rotation 180° clockwise
+            2 => {
+                // Rotation 180° clockwise
                 for xs in 0..4 - empty_rows_x[e_nb] {
                     for ys in 0..3 - empty_rows_y[e_nb] {
                         piece[2 - ys - empty_rows_y[e_nb]][3 - xs - empty_rows_x[e_nb]] =
@@ -215,7 +229,8 @@ impl Playfield {
                 }
             }
 
-            3 => { // Rotation 270° clockwise
+            3 => {
+                // Rotation 270° clockwise
                 for xs in 0..4 - empty_rows_x[e_nb] {
                     for ys in 0..3 {
                         piece[3 - xs - empty_rows_x[e_nb]][ys] = piece_or[ys][xs];
@@ -223,7 +238,7 @@ impl Playfield {
                 }
             }
 
-            _ => {},
+            _ => {}
         }
 
         for xs in 0..4 {

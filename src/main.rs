@@ -9,11 +9,10 @@ fn main() {
     println!("Started searching for solutions. Please wait. This will take long ...");
 
     // As the field is symmetrical we look only at the upper triangle for the first piece
-    let s0_fields = [0,  1,  2,  3,  4 , 5,  6,  7,  8,  9,
-                        11, 12, 13, 14, 15, 16, 17, 18,
-                            21, 22, 23, 24, 25, 26,
-                                30, 31, 32, 33,
-                                    38, 39];
+    let s0_fields = [
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24, 25, 26, 30,
+        31, 32, 33, 38, 39,
+    ];
 
     // This closure translates the number of a field to its x and y coordinates
     let f2xy = |p| {
@@ -22,35 +21,35 @@ fn main() {
         };
 
         if p > 51 {
-            return (p-52, 8);
+            return (p - 52, 8);
         };
 
         if p > 48 {
-            return (p-49, 7);
+            return (p - 49, 7);
         };
 
         if p > 44 {
-            return (p-45, 6);
+            return (p - 45, 6);
         };
 
         if p > 39 {
-            return (p-40, 5);
+            return (p - 40, 5);
         };
 
         if p > 33 {
-            return (p-34, 4);
+            return (p - 34, 4);
         };
 
         if p > 26 {
-            return (p-27, 3);
+            return (p - 27, 3);
         };
 
         if p > 18 {
-            return (p-19, 2);
+            return (p - 19, 2);
         };
 
         if p > 9 {
-            return (p-10, 1);
+            return (p - 10, 1);
         };
 
         return (p, 0);
