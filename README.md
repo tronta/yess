@@ -1,4 +1,4 @@
-# yess-Solver
+# yessss-Solver
 
 Is a solver for the game yess.
 ![Game Board](https://github.com/tronta/yess-solver/blob/master/doc/Board.JPG)
