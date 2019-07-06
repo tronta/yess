@@ -1,18 +1,11 @@
 extern crate rayon;
-use rayon::prelude::*;
 
 mod playfield;
 use playfield::*;
 
-// Main function performs a brute force solving
+/// Main function performs a brute force solving
 fn main() {
     println!("Started searching for solutions. Please wait. This will take long ...");
-
-    // As the field is symmetrical we look only at the upper triangle for the first piece
-    let s0_fields = [
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24, 25, 26, 30,
-        31, 32, 33, 38, 39,
-    ];
 
     // This closure translates the number of a field to its x and y coordinates
     let f2xy = |p| {
@@ -60,10 +53,11 @@ fn main() {
     // r in 0..4 for pieces with one symmetrical axis
     // r in 0..2 for pieces with two symmetrical axis
 
-    s0_fields.par_iter().for_each( |s0| { // use rayon for the different fields of the first piece
+    // As the field is symmetrical we look only at the upper triangle for the first piece
+    (0..40usize).for_each( |s0| { // use rayon for the different fields of the first piece
     let mut pf = Playfield::new();
     for r0 in 0..8 {
-        if pf.set_piece( f2xy(*s0), 0, r0 ) == false { continue; } // if piece does not fit there successfull try the next possition
+        if pf.set_piece( f2xy(s0), 0, r0 ) == false { continue; } // if piece does not fit there successfull try the next possition
 
         for s1 in 0..55 {
         for r1 in 0..8 {
