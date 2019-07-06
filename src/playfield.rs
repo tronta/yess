@@ -1,4 +1,5 @@
-use playfield::Piece::*;
+use colored::*;
+use Piece::*;
 use std::collections::HashSet;
 use std::fmt;
 use std::fmt::Formatter;
@@ -273,7 +274,22 @@ impl fmt::Debug for Playfield {
         for i in 0..55 {
             let _ = match &self.field[i] {
                 NoStone => write!(f, "_,"),
-                Stone(w) => write!(f, "{},", w),
+                Stone(w) =>  write!(f, "{},", match w {
+                    'A' => "A".yellow(),
+                    'B' => "B".red(),
+                    'C' => "C".blue(),
+                    'D' => "D".bright_magenta(),
+                    'E' => "E".green(),
+                    'F' => "F".cyan(),
+                    'G' => "G".bright_blue(),
+                    'H' => "H".bright_cyan(),
+                    'I' => "I".bright_yellow(),
+                    'J' => "J".on_magenta(),
+                    'K' => "K".bright_green(),
+                    'L' => "L".on_bright_black(),
+                    _ => "X".bold(),
+                }
+                ),
             };
             ret_c -= 1;
             if ret_c == 0 {
