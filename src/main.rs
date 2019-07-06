@@ -1,4 +1,5 @@
 extern crate rayon;
+use rayon::prelude::*;
 
 mod playfield;
 use playfield::*;
@@ -54,7 +55,7 @@ fn main() {
     // r in 0..2 for pieces with two symmetrical axis
 
     // As the field is symmetrical we look only at the upper triangle for the first piece
-    (0..40usize).for_each( |s0| { // use rayon for the different fields of the first piece
+    (0..40usize).into_par_iter().for_each( |s0| { // use rayon for the different fields of the first piece
     let mut pf = Playfield::new();
     for r0 in 0..8 {
         if pf.set_piece( f2xy(s0), 0, r0 ) == false { continue; } // if piece does not fit there successfull try the next possition
