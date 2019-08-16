@@ -58,16 +58,16 @@ impl Playfield {
 
     pub fn field_empty(&self, x: usize, y: usize) -> bool {
         if x > 9 {
-            return false;
+            return false
         }
         if y > 9 - x {
-            return false;
+            return false
         }
 
         if let Stone(_) = self.field[get_delta(y) + x] {
-            return false;
+            false
         } else {
-            return true;
+            true
         }
     }
 
@@ -107,10 +107,7 @@ impl Playfield {
             self.remove_piece(e_nb);
         }
 
-        let mut mirror = false;
-        if rot > 3 {
-            mirror = true;
-        }
+        let mirror = rot > 3;
 
         if e_nb > 11 {
             panic!("{} is not a valid piece number!", e_nb);
@@ -185,7 +182,7 @@ impl Playfield {
         let mut piece_or = [[NoStone; 4]; 4];
 
         // mirror piece on the x-achis if needed
-        if mirror == true {
+        if mirror {
             for xs in 0..4 {
                 for ys in 0..3 - empty_rows_y[e_nb] {
                     piece_or[2 - ys - empty_rows_y[e_nb]][xs] = pieces[e_nb][ys][xs];
@@ -245,7 +242,7 @@ impl Playfield {
         for xs in 0..4 {
             for ys in 0..4 {
                 if let Stone(_) = piece[ys][xs] {
-                    if self.field_empty(co.0 + xs, co.1 + ys) == false {
+                    if !self.field_empty(co.0 + xs, co.1 + ys) {
                         return false;
                     }
                 }
@@ -272,8 +269,8 @@ impl fmt::Debug for Playfield {
         let mut ret = 10;
         let mut ret_c = ret;
         for i in 0..55 {
-            let _ = match &self.field[i] {
-                NoStone => write!(f, "_,"),
+            match &self.field[i] {
+                NoStone => write!(f, "_,")?,
                 Stone(w) => write!(
                     f,
                     "{},",
@@ -292,15 +289,15 @@ impl fmt::Debug for Playfield {
                         'L' => "L".on_bright_black(),
                         _ => "X".bold(),
                     }
-                ),
+                )?,
             };
             ret_c -= 1;
             if ret_c == 0 {
                 ret -= 1;
                 ret_c = ret;
-                let _ = write!(f, "\n");
+                writeln!(f)?;
             }
         }
-        write!(f, "")
+        Ok(())
     }
 }

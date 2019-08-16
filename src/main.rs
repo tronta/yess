@@ -45,7 +45,7 @@ fn main() {
             return (p - 10, 1);
         };
 
-        return (p, 0);
+        (p, 0)
     };
 
     // Brute force trying for a type all positions and rotations, incl mirroring
@@ -57,49 +57,49 @@ fn main() {
     (0..40usize).into_par_iter().for_each( |s0| { // use rayon for the different fields of the first piece
     let mut pf = Playfield::new();
     for r0 in 0..8 {
-        if pf.set_piece( f2xy(s0), 0, r0 ) == false { continue; } // if piece does not fit there successfull try the next possition
-
+        if !pf.set_piece( f2xy(s0), 0, r0 ) { continue; } // if piece does not fit there successfull try the next possition
+        println!("Piece 0: {}, {}", s0, r0);
         for s1 in 0..55 {
         for r1 in 0..8 {
-            if pf.set_piece( f2xy(s1), 1, r1 ) == false { continue; }
-
+            if !pf.set_piece( f2xy(s1), 1, r1 ) { continue; }
+            println!("Piece 1: {}, {}", s1, r1);
             for s2 in 0..55 {
             for r2 in 0..8 {
-                if pf.set_piece( f2xy(s2), 2, r2 ) == false { continue; }
-
+                if !pf.set_piece( f2xy(s2), 2, r2 ) { continue; }
+                println!("Piece 2: {}, {}", s2, r2);
                 for s3 in 0..55 {
                 for r3 in 0..8 {
-                    if pf.set_piece( f2xy(s3), 3, r3 ) == false { continue; }
-
+                    if !pf.set_piece( f2xy(s3), 3, r3 ) { continue; }
+                    println!("Piece 3: {}, {}", s3, r3);
                     for s4 in 0..55 {
                     for r4 in 0..8 {
-                        if pf.set_piece( f2xy(s4), 4, r4 ) == false { continue; }
+                        if !pf.set_piece( f2xy(s4), 4, r4 ) { continue; }
 
                         for s5 in 0..55 {
                         for r5 in 0..4 {
-                            if pf.set_piece( f2xy(s5), 5, r5 ) == false { continue; }
+                            if !pf.set_piece( f2xy(s5), 5, r5 ) { continue; }
 
                             for s6 in 0..55 {
                             for r6 in 0..4 {
-                                if pf.set_piece( f2xy(s6), 6, r6 ) == false { continue; }
+                                if !pf.set_piece( f2xy(s6), 6, r6 ) { continue; }
 
                                 for s7 in 0..55 {
                                 for r7 in 0..4 {
-                                    if pf.set_piece( f2xy(s7), 7, r7 ) == false { continue; }
+                                    if !pf.set_piece( f2xy(s7), 7, r7 ) { continue; }
 
                                     for s8 in 0..55 {
                                     for r8 in 0..4 {
-                                        if pf.set_piece( f2xy(s8), 8, r8 ) == false { continue; }
+                                        if !pf.set_piece( f2xy(s8), 8, r8 ) { continue; }
 
                                         for s9 in 0..55 {
                                         for r9 in 0..2 {
-                                            if pf.set_piece( f2xy(s9), 9, r9 ) == false { continue; }
+                                            if !pf.set_piece( f2xy(s9), 9, r9 ) { continue; }
 
                                             for s10 in 0..55 {
-                                                if pf.set_piece( f2xy(s10), 10, 0 ) == false { continue; }
+                                                if !pf.set_piece( f2xy(s10), 10, 0 ) { continue; }
 
                                                 for s11 in 0..55 {
-                                                    if pf.set_piece( f2xy(s11), 11, 0 ) == false { continue; }
+                                                    if !pf.set_piece( f2xy(s11), 11, 0 ) { continue; }
                                                     println!("Field:\n{:?}", pf);
                                                     break;
                                                 }
